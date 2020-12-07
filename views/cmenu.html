@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Crea tu menu</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="web page to create menus">
+        <meta name="keywords" content="menus">
+        <meta name="author" content="Cristian Franco">
+        <link rel="stylesheet" href="/style.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="formularioytel">
+            <h1>Crea tu menu</h1>
+            <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true">
+                <p>
+                  <label> <input placeholder="Nombre" type="text" name="name" required/></label>
+               </p>
+                <p>
+                  <label> <input placeholder="Email" type="text" name="name" required/></label>
+                </p>
+                <p>
+                  <label> <textarea placeholder="Mensaje" name="message"  required></textarea></label>
+                </p>
+                <div data-netlify-recaptcha="true"></div>
+                <p>
+                  <button class="enviar" type="submit">Enviar</button>
+                </p>
+              </form>
+        </div>
+    </body>
+</html>
