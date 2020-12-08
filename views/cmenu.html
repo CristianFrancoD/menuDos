@@ -12,19 +12,18 @@
     <body>
         <div class="formularioytel">
             <h1>Crea tu menu</h1>
-            <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true">
+            <form name="contact" action="/createMenu" method="POST">
                 <p>
                   <label> <input placeholder="Nombre" type="text" name="name" required/></label>
                </p>
                 <p>
-                  <label> <input placeholder="Email" type="text" name="name" required/></label>
+                  <label> <input placeholder="Precio" type="number" name="price" required/></label>
                 </p>
                 <p>
-                  <label> <textarea placeholder="Mensaje" name="message"  required></textarea></label>
+                  <label> <textarea placeholder="Descripcion" name="desc"  required></textarea></label>
                 </p>
-                <div data-netlify-recaptcha="true"></div>
                 <p>
-                  <button class="enviar" type="submit">Enviar</button>
+                  <button class="enviar" type="submit">Crear</button>
                 </p>
               </form>
         </div>
