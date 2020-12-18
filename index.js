@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 
 require('dotenv').config();
+app.set('view engine', 'pug')
+
 
 var mongoose = require('mongoose');
 
@@ -11,7 +13,8 @@ const Schema = mongoose.Schema;
 const menuSchema = new Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
-  desc: String
+  desc: String,
+  hidden: Boolean
 });
 
 
@@ -40,6 +43,11 @@ app.use(function(req,res,next){
 app.use(bodyParser.urlencoded({extended: false}));
 
   
+//Index view
+app.get('/',function(req,res){
+  res.render(__dirname+'/views/pug/index', {title: 'Hello', message: 'Please login'});
+});
+
 
 //Show Menus
 app.get('/menus',function(req,res){
@@ -63,7 +71,9 @@ app.post('/createMenu',function(req,res){
   let menu = new Menu(
     {name:req.body.name,
      price:req.body.price,
-     desc:req.body.desc});
+     desc:req.body.desc,
+     hidden:req.body.hidden},
+   );
 
      menu.save(function(err,menu){
        if(err){
