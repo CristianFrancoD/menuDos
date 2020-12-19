@@ -45,7 +45,7 @@ app.use(bodyParser.urlencoded({extended: false}));
   
 //Index view
 app.get('/',function(req,res){
-  res.render(__dirname+'/views/pug/index', {title: 'Hello', message: 'Please login'});
+  res.render(__dirname+'/views/pug/index', {message1: 'Click aqui', message2: 'Registrarse'});
 });
 
 
