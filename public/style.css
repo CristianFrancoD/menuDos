@@ -1,8 +1,16 @@
-body {
-   
-    font-family: sans-serif;
-  }
-  
+*{
+    
+  font-family: sans-serif;
+  margin:0px;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color:white
+}
   h1 {
     font-size: 4em;
     text-align: center;
@@ -11,4 +19,23 @@ body {
   
   input[type=text], label {
     margin-bottom: 8px;
+  }
+
+  .navbar{
+    background-color:black;
+    color:white;
+    margin:0px;
+    padding: 0;
+    height: 7vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+  }
+  .navbar ul li{
+    list-style-type: none; 
+    display: inline;
+    padding-left: 1vh;
   }

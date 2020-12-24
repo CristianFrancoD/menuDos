@@ -11,17 +11,31 @@ var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const menuSchema = new Schema({
-  name: { type: String, required: true },
-  price: { type: Number, required: true },
-  desc: String,
-  hidden: Boolean
+  Menuname: { type: String, required: true },
+  items : [{
+    name: { type: String, required: true },
+    price: { type: Number, required: true },
+    desc: String,
+    hidden: Boolean
+  }],
+  available: Boolean,
+  //created_By: reference to User logged
+
 });
 
 const companySchema = new Schema({
-  name:{type:String, required: true},
-  social_reason:{type:String, required:true}
-  //todo user_create and other stuff
-})
+  companyName:{type:String, required: true},
+  social_reason:{type:String, required:true},
+  address: {type:String}
+  //created_By: reference to User logged
+
+});
+
+const userSchema = new Schema({
+  email: {type:String, required:true},
+  firstName: {type:String, required:true},
+  lastName: {type:String, required:true}
+});
 const Menu = mongoose.model("Menu", menuSchema);
 const Company = mongoose.model("Company",companySchema);
 
@@ -49,7 +63,7 @@ app.use(function(req,res,next){
 app.use(bodyParser.urlencoded({extended: false}));
 
   
-//Index view
+//Index view 
 app.get('/',function(req,res){
   res.render(__dirname+'/views/pug/index', {logged: true});
 });
