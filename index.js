@@ -17,8 +17,14 @@ const menuSchema = new Schema({
   hidden: Boolean
 });
 
-
+const companySchema = new Schema({
+  name:{type:String, required: true},
+  social_reason:{type:String, required:true}
+  //todo user_create and other stuff
+})
 const Menu = mongoose.model("Menu", menuSchema);
+const Company = mongoose.model("Company",companySchema);
+
 
 //makes the conecction whith the database (Mongo Atlas) the MONGO_URI value is in .env file
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -45,8 +51,58 @@ app.use(bodyParser.urlencoded({extended: false}));
   
 //Index view
 app.get('/',function(req,res){
-  res.render(__dirname+'/views/pug/index', {message1: 'Click aqui', message2: 'Registrarse'});
+  res.render(__dirname+'/views/pug/index', {logged: true});
 });
+
+
+//Company routes
+app.get('/company',function(req,res){
+  res.render(__dirname+'/views/pug/company');
+});
+
+app.post('/createCompany',function(req,res){
+  let company = new Company({
+    name:req.body.name,
+    social_reason: req.body.social_reason
+  });
+
+  company.save(function(err,company){
+    if(err){
+      console.log(err);
+    }else{
+      console.log(company);
+      res.redirect("/companyAll");
+    }
+  })
+});
+
+async function fun(){
+  
+  return companies
+}
+
+
+app.get('/companyAll',async function(req,res, next){
+ 
+  try{
+    const companies = await Company.find();
+    res.render(__dirname+'/views/pug/companyAll', {companies:companies});
+  }catch(e){
+    next(e);
+  } 
+
+  /*Company.find().exec(function(err,data){
+    if(err){
+      console.log(err);
+    }else{
+      
+      companies = data;
+      console.log(companies);
+    }
+  });*/
+  
+});
+
 
 
 //Show Menus

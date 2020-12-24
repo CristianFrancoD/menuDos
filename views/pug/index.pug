@@ -1,27 +1,23 @@
-html
-  head
-    title Inicio
-    meta(name='description', content='Home page')
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name="author" content="Cristian Franco")
-    link(rel='stylesheet', href='./style.css')
-  body
+extends layout.pug
+block content
     div(class="iniciar-ses")
-      h1 Iniciar sesión
-      form 
-        p
-          label
-            input(placeholder="Correo" type="text" name="correo" required)
-        p
-          label
-            input(placeholder="Contraseña" type="password" name="contra" required)
-        p
-          button(class="enviar" type="submit") Entrar
-           
+      if logged
+        h1 Guia de inicio
+        ol
+          li Crear una empresa para poder asociar las cartas a esta en el apartado de empresas.
+          li Despues de crear tu empresa puedes crear tus cartas
+          li Tus cartas estaran en la seccion de Cartas en donde podras ver, editar y borrar elementos de tus cartas.
+          li En la seccion de cartas tambien podras generar los codigos QR o ver los links para consumir el API desde tu web/aplicacion
+        p Nota: La cantidad de empresas y cartas que puedes crear es ilimitada.
 
-      h2
-      | Olvide mi contraseña
-      | #{message1}
-      p=message2
+      else   
+        h1 Iniciar sesión
+        form 
+          p
+            label
+              input(placeholder="Correo" type="text" name="correo" required)
+          p
+            label
+              input(placeholder="Contraseña" type="password" name="contra" required)
+          p
+            button(class="enviar" type="submit") Entrar
