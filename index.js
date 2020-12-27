@@ -76,8 +76,9 @@ app.get('/company',function(req,res){
 
 app.post('/createCompany',function(req,res){
   let company = new Company({
-    name:req.body.name,
-    social_reason: req.body.social_reason
+    companyName:req.body.name,
+    social_reason: req.body.social_reason,
+    address: req.body.address
   });
 
   company.save(function(err,company){
@@ -90,10 +91,7 @@ app.post('/createCompany',function(req,res){
   })
 });
 
-async function fun(){
-  
-  return companies
-}
+
 
 
 app.get('/companyAll',async function(req,res, next){

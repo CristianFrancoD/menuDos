@@ -11,4 +11,6 @@ html
     div(class="iniciar-ses")
       ul
         each val in companies
-          li= val
+          li= val.companyName
+          li= val.social_reason
+          li= val.address
