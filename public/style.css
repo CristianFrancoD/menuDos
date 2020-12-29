@@ -2,6 +2,8 @@
     
   font-family: sans-serif;
   margin:0px;
+  list-style-type: none; 
+
 }
 a:link {
   text-decoration: none;
@@ -34,8 +36,23 @@ a:visited {
 
 
   }
-  .navbar ul li{
-    list-style-type: none; 
+
+  .navigation{
+    width: 50vw;
+    display: flex;
+    justify-content: flex-start;
+    
+  }
+  .navigation ul li{
     display: inline;
-    padding-left: 1vh;
+    padding-left: 1vw;
+
+  }
+
+  .profile{
+    width: 50vw;
+    display: flex;
+    padding-right: 2vw;
+    justify-content: flex-end;
+
   }

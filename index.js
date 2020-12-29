@@ -70,7 +70,7 @@ app.get('/',function(req,res){
 
 
 //Company routes
-app.get('/company',function(req,res){
+app.get('/companyAll',function(req,res){
   res.render(__dirname+'/views/pug/company');
 });
 
@@ -94,7 +94,7 @@ app.post('/createCompany',function(req,res){
 
 
 
-app.get('/companyAll',async function(req,res, next){
+app.get('/company',async function(req,res, next){
  
   try{
     const companies = await Company.find();
@@ -119,19 +119,20 @@ app.get('/companyAll',async function(req,res, next){
 
 //Show Menus
 app.get('/menus',function(req,res){
-   Menu.find().exec(function(err,menus){
+  /* Menu.find().exec(function(err,menus){
      if(err){
        return console.log(err);
      }else{
        console.log(menus);
        res.json(menus);
      }
-   })
+   })*/
+   res.render(__dirname+'/views/pug/menuAll.pug');
 });
 
 //Show view to create Menus
 app.get('/createMenu',function(req,res){
-  res.sendFile(__dirname+'/views/cmenu.html');
+  res.render(__dirname+'/views/pug/menu.pug');
 });
 
 //Create Menus
