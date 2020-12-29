@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-
 require('dotenv').config();
 app.set('view engine', 'pug')
 
@@ -70,7 +69,7 @@ app.get('/',function(req,res){
 
 
 //Company routes
-app.get('/companyAll',function(req,res){
+app.get('/company',function(req,res){
   res.render(__dirname+'/views/pug/company');
 });
 
@@ -91,10 +90,12 @@ app.post('/createCompany',function(req,res){
   })
 });
 
+app.delete('/deleteCompany',function(req,res){
+})
 
 
 
-app.get('/company',async function(req,res, next){
+app.get('/companyAll',async function(req,res, next){
  
   try{
     const companies = await Company.find();
@@ -118,7 +119,7 @@ app.get('/company',async function(req,res, next){
 
 
 //Show Menus
-app.get('/menus',function(req,res){
+app.get('/menusAll',function(req,res){
   /* Menu.find().exec(function(err,menus){
      if(err){
        return console.log(err);

@@ -56,3 +56,8 @@ a:visited {
     justify-content: flex-end;
 
   }
+
+  .companyAll{
+    text-align: center;
+    width: 80vw;
+  }
