@@ -1,15 +1,11 @@
 extends layout.pug
 block content
-    div(class="button")
-      a(href="/company")
+    div(class="btn")
+      a(href="/companyCreate") Añadir empresa
     div(class="companyAll")
       ul
         each val in companies
-          - var idA = val._id.toString();
-          li= val._id
-          li= val.companyName
-          li= val.social_reason
-          li= val.address
           li 
-            button(id="deleteBtn", data-id=val._id) Borrar
-    script(src="./main.js")
+            a(href='/company/'+val._id) Empresa: #{val.companyName}
+              
+          

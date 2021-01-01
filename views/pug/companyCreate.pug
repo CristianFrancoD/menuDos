@@ -1,0 +1,17 @@
+extends layout.pug
+block content
+    div(class="")
+      h1 Nueva empresa
+      form(method="POST" action="/companyCreate")
+       p
+          label
+            input(placeholder="Nombre de la empresa" type="text" name="name" required)
+       p
+          label
+            input(placeholder="Razon social" type="text" name="social_reason" required)
+       p
+          label
+            input(placeholder="Address" type="text" name="address" required)
+       p
+          button(class="enviar" type="submit") Crear
+      

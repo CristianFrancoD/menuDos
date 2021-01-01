@@ -69,11 +69,23 @@ app.get('/',function(req,res){
 
 
 //Company routes
-app.get('/company',function(req,res){
-  res.render(__dirname+'/views/pug/company');
+app.get('/companyCreate',function(req,res){
+  res.render(__dirname+'/views/pug/companyCreate');
 });
 
-app.post('/createCompany',function(req,res){
+//button(class="deleteBtn" id="deleteBtn", data-id=val._id) Eliminar
+app.get('/company/:id',async function(req,res,next){
+  try {
+    var company = await Company.findById(req.params.id);
+    
+    res.render(__dirname+'/views/pug/company',{company:company});
+  } catch (error) {
+    next(error)
+  }
+
+});
+
+app.post('/companyCreate',function(req,res){
   let company = new Company({
     companyName:req.body.name,
     social_reason: req.body.social_reason,
@@ -91,6 +103,7 @@ app.post('/createCompany',function(req,res){
 });
 
 app.delete('/deleteCompany',function(req,res){
+
 })
 
 
@@ -100,19 +113,9 @@ app.get('/companyAll',async function(req,res, next){
   try{
     const companies = await Company.find();
     res.render(__dirname+'/views/pug/companyAll', {companies:companies});
-  }catch(e){
-    next(e);
+  }catch(error){
+    next(error);
   } 
-
-  /*Company.find().exec(function(err,data){
-    if(err){
-      console.log(err);
-    }else{
-      
-      companies = data;
-      console.log(companies);
-    }
-  });*/
   
 });
 

@@ -61,3 +61,44 @@ a:visited {
     text-align: center;
     width: 80vw;
   }
+
+  .btn{
+    border:black 2px solid;
+    height: 6vh;
+    width: 8vw;
+    margin-top: 5vh;
+    font-size: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn a{
+    color:black;
+
+  }
+
+  .btn:hover{
+    border:white 2px solid;
+    background-color: black;
+
+  }
+
+
+  .deleteBtn{
+    background-color: white;
+    color:red;
+    border:red 2px solid;
+
+  }
+  .deleteBtn:hover{
+    background-color: red;
+    color:white;
+    border:white 2px solid;
+
+  }
+
+  .deleteBtn:focus{
+    outline: none;
+
+  }

@@ -1,5 +1,5 @@
 {
-  "name": "lamezcaleria-api",
+  "name": "menudos",
   "version": "1.0.0",
   "description": "API for menus",
   "main": "index.js",
