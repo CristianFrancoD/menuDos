@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
+//Menu Schema
 const menuSchema = new Schema({
     Menuname: { type: String, required: true },
     items : [{

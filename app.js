@@ -5,11 +5,12 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 app.set('view engine', 'pug')
 
-
-//makes the conecction whith the database (Mongo Atlas) the MONGO_URI value is in .env file
+/**
+ * Database stuff
+ */
+//Makes the conecction whith the database (Mongo Atlas) the MONGO_URI value is in .env file
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 let db = mongoose.connection;
-
 
 //Check connection
 db.once('open',function(){
@@ -22,15 +23,19 @@ db.on('error',function(err){
 })
 
 
-//use stactic assets for every file
-app.use(express.static(__dirname +'/public'));
 
 
-//Bring in Models
+
+/**
+ * Bring in Models
+ */
 let Company = require('./models/company');
 let Menu = require('./models/menu'); 
 let User = require('./models/user');
 
+/**
+ * Middleware
+ */
 //Logger for al requests
 app.use(function(req,res,next){
   req.time = new Date().toString();
@@ -39,16 +44,26 @@ app.use(function(req,res,next){
   
   });
 
+//BodyParser middleware
 app.use(bodyParser.urlencoded({extended: false}));
 
+//use stactic assets for every file
+app.use(express.static(__dirname +'/public'));
   
+/**
+ * Routes
+ */
+
 //Index view 
 app.get('/',function(req,res){
   res.render(__dirname+'/views/pug/index', {logged: true});
 });
 
 
-//Company routes
+/**
+ * Company Routes
+ */
+//Creates Company
 app.get('/companyCreate',function(req,res){
   res.render(__dirname+'/views/pug/companyCreate');
 });
@@ -89,7 +104,6 @@ app.delete('/deleteCompany',function(req,res){
 
 })
 
-
 //Gets all companies
 app.get('/companyAll',async function(req,res, next){
  
@@ -102,7 +116,9 @@ app.get('/companyAll',async function(req,res, next){
   
 });
 
-
+/**
+ * Menus Routes
+ */
 
 //Show Menus
 app.get('/menusAll',function(req,res){
@@ -154,6 +170,7 @@ app.get('/menu/:id',function(req,res){
   })
 });
 
-  app.listen(3000, function () {
-    console.log('Running app listening on port 3000!');
-  });
+
+app.listen(3000, function () {
+  console.log('Running app listening on port 3000!');
+});

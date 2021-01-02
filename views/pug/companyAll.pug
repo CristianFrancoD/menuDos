@@ -1,11 +1,12 @@
 extends layout.pug
 block content
+  div(class="companyAll")
     div(class="btn")
       a(href="/companyCreate") Añadir empresa
-    div(class="companyAll")
+    div(class="list-companies")
       ul
-        each val in companies
+        each company in companies
           li 
-            a(href='/company/'+val._id) Empresa: #{val.companyName}
+            a(href='/company/'+company._id) Empresa: #{company.companyName}
               
           
