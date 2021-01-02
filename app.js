@@ -54,6 +54,7 @@ app.get('/companyCreate',function(req,res){
 });
 
 //button(class="deleteBtn" id="deleteBtn", data-id=val._id) Eliminar
+//Gets specific company
 app.get('/company/:id',async function(req,res,next){
   try {
     var company = await Company.findById(req.params.id);
@@ -65,6 +66,7 @@ app.get('/company/:id',async function(req,res,next){
 
 });
 
+//Creates a company
 app.post('/companyCreate',function(req,res){
   let company = new Company({
     companyName:req.body.name,
@@ -82,12 +84,13 @@ app.post('/companyCreate',function(req,res){
   })
 });
 
+//Deletes an specific company
 app.delete('/deleteCompany',function(req,res){
 
 })
 
 
-
+//Gets all companies
 app.get('/companyAll',async function(req,res, next){
  
   try{

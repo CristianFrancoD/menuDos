@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
 
 const menuSchema = new Schema({
     Menuname: { type: String, required: true },
@@ -12,4 +14,4 @@ const menuSchema = new Schema({
     //created_By: reference to User logged
   });
 
-const Menu = module.exports = mongoose.model('Menu',menuSchema);
+module.exports = mongoose.model('Menu',menuSchema);
