@@ -2,9 +2,9 @@
   "name": "menudos",
   "version": "1.0.0",
   "description": "API for menus",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app"
   },
   "author": "Cristian Franco",
   "license": "ISC",

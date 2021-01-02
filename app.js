@@ -1,57 +1,37 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 require('dotenv').config();
 app.set('view engine', 'pug')
 
 
-var mongoose = require('mongoose');
-
-const Schema = mongoose.Schema;
-
-const menuSchema = new Schema({
-  Menuname: { type: String, required: true },
-  items : [{
-    name: { type: String, required: true },
-    price: { type: Number, required: true },
-    desc: String,
-    hidden: Boolean
-  }],
-  available: Boolean,
-  //created_By: reference to User logged
-
-});
-
-const companySchema = new Schema({
-  companyName:{type:String, required: true},
-  social_reason:{type:String, required:true},
-  address: {type:String}
-  //created_By: reference to User logged
-
-});
-
-const userSchema = new Schema({
-  email: {type:String, required:true},
-  firstName: {type:String, required:true},
-  lastName: {type:String, required:true}
-});
-const Menu = mongoose.model("Menu", menuSchema);
-const Company = mongoose.model("Company",companySchema);
-
-
 //makes the conecction whith the database (Mongo Atlas) the MONGO_URI value is in .env file
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+let db = mongoose.connection;
 
 
+//Check connection
+db.once('open',function(){
+    console.log('Connected to MongoDB')
+})
+
+//Check for DB erros
+db.on('error',function(err){
+    console.log(err);
+})
 
 
 //use stactic assets for every file
 app.use(express.static(__dirname +'/public'));
 
 
+//Bring in Models
+let Company = require('./models/company');
+let Menu = require('./models/menu'); 
+let User = require('./models/user');
 
-
-//logger for al requests
+//Logger for al requests
 app.use(function(req,res,next){
   req.time = new Date().toString();
   console.log(req.time+": "+req.method+" "+req.path+" - "+req.ip)
@@ -172,5 +152,5 @@ app.get('/menu/:id',function(req,res){
 });
 
   app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+    console.log('Running app listening on port 3000!');
   });
