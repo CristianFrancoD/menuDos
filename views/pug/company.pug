@@ -1,4 +1,7 @@
 extends layout.pug
 block content
     div(class="company")
-        p= company
+        p= company.companyName
+        p= company.social_reason
+        p= company.address
+        a(class="deleteBtn" id="deleteBtn", data-id=company._id) Eliminar

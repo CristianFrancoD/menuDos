@@ -100,8 +100,15 @@ app.post('/companyCreate',function(req,res){
 });
 
 //Deletes an specific company
-app.delete('/deleteCompany',function(req,res){
-
+app.delete('/deleteCompany/:id', async function(req,res){
+  let id= {_id:req.params.id}
+  try {
+    let deleteCompany = await Company.remove(id);
+    console.log("Deleted succed, number of deleted docs"+deleteCompany.deletedCount);
+    return;
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 //Gets all companies

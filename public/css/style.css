@@ -11,7 +11,7 @@ a:link {
 
 a:visited {
   text-decoration: none;
-  color:white
+  color:white;
 }
   h1 {
     font-size: 4em;
@@ -59,8 +59,29 @@ a:visited {
 
   .companyAll{
     text-align: center;
-    width: 80vw;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
   }
+
+  .list-companies ul li a:visited{
+    color:black !important;
+  }
+
+
+  .list-companies ul{
+    margin-top:1vh;
+  }
+  
+  .list-companies ul li{
+
+    border:1px solid;
+    padding:1vh;
+  }
+
 
   .btn{
     border:black 2px solid;
