@@ -1,2 +1,14 @@
 extends layout.pug
 block content
+    main(class="company")
+        section(class="")
+            h1(class="") Menus
+            a(href="/menu/add" class="btn") Crear
+        section 
+            ul
+                each menu in menus
+                    li 
+                        span=menu
+                        span Creado por
+                        span
+                        a(href='/company/'+menu._id class="btn") Editar

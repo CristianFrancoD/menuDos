@@ -12,24 +12,18 @@ html
         link(rel='stylesheet', href='/css/style.css')
         link(href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet")
     body
-        div(class="navbar")
-            div(class="navigation")
-                ul
-                    li
-                        a(href="/")
-                            i(class="fa fa-home" aria-hidden="true") 
-                            | Inicio
-                    li
-                        a(href="/companyAll")
-                            i(class="fa fa-building" aria-hidden="true") 
-                            | Empresas      
-                    li 
-                        a(href="/menusAll")
-                            i(class="fa fa-cutlery" aria-hidden="true") 
-                            | Cartas      
-            div(class="profile")
-                p 
-                i(class="fa fa-user" aria-hidden="true")
-                | Nombre
+        header(class="nav-bar")
+            nav(class="navegacion")
+                div(class="left-container")
+                    a(href="/")
+                        img(class="logo" alt="logo de la mezcaleriavlc" src="/imgs/logo.png")
+                div(id="hamb-menu" class="links-nav")
+                    span(class="menu-mob")
+                        i(class="fa fa-bars" aria-hidden="true")
+                    ul(class="menu-desk")
+                        li
+                            a(href="/") Perfil
         block content
+        footer
+            span(class="footer-text") &copy; 2020 Powered by Chingon.xyz
         script(src="/js/main.js")

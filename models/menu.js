@@ -3,14 +3,15 @@ var Schema = mongoose.Schema;
 
 //Menu Schema
 const menuSchema = new Schema({
-    Menuname: { type: String, required: true },
+    menuName: { type: String, required: true },
+    description:{type:String},
     items : [{
-      name: { type: String, required: true },
-      price: { type: Number, required: true },
+      name: { type: String, /*required: true*/ },
+      price: { type: Number,  /*required: true*/ },
       desc: String,
       hidden: Boolean
     }],
-    available: Boolean,
+    group: String,
     //created_By: reference to User logged
   });
 

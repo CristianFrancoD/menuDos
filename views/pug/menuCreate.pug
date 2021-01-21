@@ -1,2 +1,26 @@
 extends layout.pug
 block content
+    main(class="company")
+      section(class="")
+        h1 Nueva menu
+        form(method="POST" action="/menu/add")
+          p
+              label
+                input(placeholder="Nombre de la carta" type="text" name="menuName" required)
+          p
+              label
+                input(placeholder="Descripcion" type="text" name="description")
+          p
+              label(for="group")
+                select(name="group" id="group")
+                  option(value="menu" selected) Menu
+                  option(value="mezcalers") Mezcales
+          p
+              button(class="enviar" type="submit") Crear
+
+        br
+        button(id="myBtn") Open Modal
+        div(id="myModal" class="modal") 
+          div(class="modal-content")
+            span(class="close") &times;
+            p Some text in the Modal..

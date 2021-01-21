@@ -24,13 +24,10 @@ db.on('error',function(err){
 
 
 
-
-
 /**
  * Bring in Models
  */
 let Company = require('./models/company');
-let Menu = require('./models/menu'); 
 let User = require('./models/user');
 
 /**
@@ -53,11 +50,6 @@ app.use(express.static(__dirname +'/public'));
 /**
  * Routes
  */
-
-//Index view 
-app.get('/',function(req,res){
-  res.render(__dirname+'/views/pug/index', {logged: true});
-});
 
 
 /**
@@ -105,9 +97,10 @@ app.delete('/deleteCompany/:id', async function(req,res){
   try {
     let deleteCompany = await Company.remove(id);
     console.log("Deleted succed, number of deleted docs"+deleteCompany.deletedCount);
-    return;
+    res.redirect('/companyAll');
   } catch (error) {
     console.log(error);
+    return;
   }
 })
 
@@ -127,55 +120,11 @@ app.get('/companyAll',async function(req,res, next){
  * Menus Routes
  */
 
-//Show Menus
-app.get('/menusAll',function(req,res){
-  /* Menu.find().exec(function(err,menus){
-     if(err){
-       return console.log(err);
-     }else{
-       console.log(menus);
-       res.json(menus);
-     }
-   })*/
-   res.render(__dirname+'/views/pug/menuAll.pug');
-});
-
-//Show view to create Menus
-app.get('/createMenu',function(req,res){
-  res.render(__dirname+'/views/pug/menu.pug');
-});
-
-//Create Menus
-app.post('/createMenu',function(req,res){
-  let menu = new Menu(
-    {name:req.body.name,
-     price:req.body.price,
-     desc:req.body.desc,
-     hidden:req.body.hidden},
-   );
-
-     menu.save(function(err,menu){
-       if(err){
-        return console.log(err);
-       }else{
-         console.log(menu);
-         res.redirect("/createMenu");
-       }
-     });
-});
+let menu = require('./routes/menu');
+app.use('/menu',menu);
 
 
-//Show specific menu
-app.get('/menu/:id',function(req,res){
-  console.log(req.params.id);
-  Menu.findById({_id:req.params.id},function(err,menu){
-    if(err){
-      return console.log(err);
-    }else{
-      console.log(menu);
-    }
-  })
-});
+
 
 
 app.listen(3000, function () {

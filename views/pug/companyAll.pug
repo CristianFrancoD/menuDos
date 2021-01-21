@@ -1,14 +1,19 @@
 extends layout.pug
 block content
   div(class="companyAll")
-    div(class="btn")
-      a(href="/companyCreate") Añadir empresa
+    div(class="header-companyAll")
+      h2 Empresas 
+      a(href="/companyCreate" class="btn") Crear
     div(class="list-companies")
-      h2 Lista de tus empresas 
-        i(class="fa fa-building" aria-hidden="true") 
       ul
         each company in companies
           li 
-            a(href='/company/'+company._id) Empresa: #{company.companyName}
+            span=company.companyName
+            span= company.social_reason
+            span= company.address
+            span Creado por
+            span
+              a(href='/company/'+company._id class="btn") Editar
+            
               
           
