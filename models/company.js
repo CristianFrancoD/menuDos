@@ -6,7 +6,10 @@ let Schema = mongoose.Schema;
 const companySchema = new Schema({
     companyName:{type:String, required: true},
     social_reason:{type:String, required:true},
-    address: {type:String}
+    address: {type:String},
+    createdAt:{ type:Date,
+      default: Date.now
+  },
     //created_By: reference to User logged
   
   });

@@ -23,13 +23,6 @@ db.on('error',function(err){
 })
 
 
-
-/**
- * Bring in Models
- */
-let Company = require('./models/company');
-let User = require('./models/user');
-
 /**
  * Middleware
  */
@@ -41,8 +34,11 @@ app.use(function(req,res,next){
   
   });
 
-//BodyParser middleware
-app.use(bodyParser.urlencoded({extended: false}));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 //use stactic assets for every file
 app.use(express.static(__dirname +'/public'));
@@ -52,15 +48,13 @@ app.use(express.static(__dirname +'/public'));
  * Routes
  */
 
-
-
-
 // Menus Routes
-let menu = require('./routes/menu');
+const menu = require('./routes/menu');
 app.use('/menu',menu);
 
 
-
+const auth = require('./routes/auth');
+app.use('/auth',auth);
 
 
 app.listen(3000, function () {

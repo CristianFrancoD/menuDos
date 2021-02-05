@@ -12,6 +12,9 @@ const menuSchema = new Schema({
       hidden: Boolean
     }],
     group: String,
+    createdAt:{ type:Date,
+      default: Date.now
+    },
     //created_By: reference to User logged
   });
 

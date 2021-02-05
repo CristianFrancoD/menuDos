@@ -24,35 +24,48 @@ router.get('/add', async function(req,res){
   });
   
   //Create Menus
-router.post('/add',function(req,res){
+router.post('/create', async function(req,res){
     let menu = 
-      new Menu({menuName:req.body.menuName,
+      {menuName:req.body.menuName,
        description:req.body.description,
        group:req.body.group,
-       main:req.body.main})
+       items:req.body.items};
+        
+       try {
+          let newMenu = await Menu.create(menu);
+          res.json(newMenu);
+       } catch (error) {
+          console.log(error);
+          res.json(error);
+       }
   
-  
-       menu.save(menu,function(err,menu){
-         if(err){
-          return console.log(err);
-         }else{
-           console.log(menu);
-           res.redirect("/");
-         }
-       });
+
   });
   
   
   //Show specific menu
-  router.get('/:id',function(req,res){
-    console.log(req.params.id);
-    Menu.findById({_id:req.params.id},function(err,menu){
-      if(err){
-        return console.log(err);
-      }else{
-        console.log(menu);
-      }
-    })
+  router.get('/:id', async function(req,res){
+    try {
+      let menu = await Menu.findById({_id:req.params.id});
+      res.json(menu);
+    } catch (error) {
+      console.log(error);
+      res.json(error);
+    }
+
+  });
+
+  //Delete specific Menu
+
+  router.delete('/remove/:id',async function(req,res){
+
+    try {
+        let menu = await Menu.deleteOne({_id: req.params.id});
+        res.json(menu);
+    } catch (error) {
+        console.log(error);
+        res.json(error);
+    }
   });
   
 
