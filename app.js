@@ -46,7 +46,7 @@ app.use(express.static(__dirname +'/public'));
 
 /**
  * Routes
- */
+*/
 
 // Menus Routes
 const menu = require('./routes/menu');

@@ -1,20 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-
-let User = require('../models/user');
 
 
-router.post('/signup', async function(req,res){
+let UserController = require('../controllers/user');
 
-    let user = new User({email:req.body.email,password:req.body.password});
-    bcrypt.hash(user.password, saltRounds).then(function(hash) {
-       user.password = hash;
-    });
-    let newUser = await User.create(user);
-    res.json(newUser);
-});
+
+router.post('/signup', UserController.signUp);
 
 
 router.post('/login', async function(req,res){
