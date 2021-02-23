@@ -1,15 +1,24 @@
+const jwt = require('jsonwebtoken');
+
 //Brigin in model
 let Menu = require('../models/menu'); 
 let User = require('../models/user');
 const MenuController = {
     all: async function(req,res){
-        try {
-          const menus = await Menu.find();
-          //res.render(__dirname+'/views/pug/menuAll',{menus:menus});
-          res.json(menus);
-        } catch (error) {
-          console.log(error);
+      jwt.verify(req.token,process.env.SECRET_JWT,async (err,authData)=>{
+        if(err){
+          res.sendStatus(403);
+        }else{
+          try {
+            const menus = await Menu.find();
+            //res.render(__dirname+'/views/pug/menuAll',{menus:menus});
+            res.json(menus);
+          } catch (error) {
+            console.log(error);
+          }
         }
+      })
+
        
     },
 
