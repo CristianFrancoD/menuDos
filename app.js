@@ -48,6 +48,10 @@ app.use(express.static(__dirname +'/public'));
  * Routes
 */
 
+app.get('/',function(req,res){
+  res.render(__dirname+'/views/pug/index');
+});
+
 // Menus Routes
 const menu = require('./routes/menu');
 app.use('/menu',menu);

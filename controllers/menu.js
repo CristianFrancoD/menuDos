@@ -5,7 +5,7 @@ let Menu = require('../models/menu');
 let User = require('../models/user');
 const MenuController = {
     all: async function(req,res){
-      jwt.verify(req.token,process.env.SECRET_JWT,async (err,authData)=>{
+      /*jwt.verify(req.token,process.env.SECRET_JWT,async (err,authData)=>{
         if(err){
           res.sendStatus(403);
         }else{
@@ -17,7 +17,14 @@ const MenuController = {
             console.log(error);
           }
         }
-      })
+      })*/
+      try {
+        const menus = await Menu.find().populate('items');
+        res.render('../views/pug/menuAll',{menus:menus});
+        //res.json(menus);
+      } catch (error) {
+        console.log(error);
+      }
 
        
     },

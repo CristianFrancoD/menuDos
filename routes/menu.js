@@ -26,7 +26,9 @@ function verifyToken(req,res,next){
 }
 
 //Index view 
-router.get('/',verifyToken, MenuController.all);
+//router.get('/',verifyToken, MenuController.all);
+
+router.get('/', MenuController.all);
 
 
 
